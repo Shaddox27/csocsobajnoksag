@@ -81,14 +81,11 @@ function displayTeams() {
 
     var s = '';
 
-     s += "<tr>"
-    for(var k in csapatBeosztas[0]){
-
-        s += "<th>" + k.charAt(0).toLocaleUpperCase() + k.slice(1) +"</th>"
-  
-    }
-        s = s.slice(0,41)
-        s += "</tr>"
+    s += "<tr>"
+    s += "<th>" + "1. Játékos" +"</th>"
+    s += "<th>" + "2. Játékos" +"</th>"
+    s += "<th>" + "Csapat" +"</th>"
+    s += "</tr>"
 
     nodeTHead.innerHTML = s;
     s ="";
