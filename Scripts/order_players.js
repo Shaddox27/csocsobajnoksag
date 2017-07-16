@@ -28,15 +28,61 @@ var betPly;
 var sorSzam = 1;
 var csapatBeosztas = [];
 
-//a játékosokat beosztja csapatokba a "Mehet" lenyomására
+//a játékosokat beosztja csapatokba a "Mehet" lenyomására, valamint megjeleníti a csapatokat táblázatokban.
 function getBetPlayerEventHandler()
 {
+    resetPlayers();
+    assignIntoTeams();
+    displayTeams();
+
+}
+
+
+function getBetPlayer (player)
+{
+    betPlayers.push(player);
+    return betPlayers;
+}
+
+
+//A players tömbből random játékost ad vissza
+function getRandomPlayerToBeAssigned (players) {
+    return players[Math.floor(Math.random()*players.length)];
+}
+
+//Beosztja a players tömbből a játékosokat a csapatBeosztas tömbbe, miközben kiüríti a players tömböt. 
+function assignIntoTeams () {
+    var currentPlayer;
+    var currentTeam;
+    var index;
+
+    while (players.length != 0) {
+        console.log("players.length: ", players.length);
+        currentTeam = [];
+        for (var i = 0; i < 2; i++) {
+            currentTeam["teamName"] = "csapat" + (csapatBeosztas.length+1);
+            currentPlayer = getRandomPlayerToBeAssigned(players);
+            index = players.indexOf(currentPlayer);
+            currentTeam.push(currentPlayer)
+            players.splice(index,1);
+        }
+
+        csapatBeosztas.push(currentTeam);
+
+        console.log("a players array: ", players);
+        console.log("a csapatbeosztás: ", csapatBeosztas);
+    }
+}
+
+//Kiírja a HTML-ben levő táblázatba a csapatBeosztas tömbben levő csapatneveket és a csapattagokat.
+function displayTeams() {
+
+    //TODO Légyszi ezt csináld meg Andris
+
     var x = document.getElementById("lstPlayers").selectedIndex;
     betPly = parseInt(document.getElementsByTagName("option")[x].value);
 
-    assignIntoTeams();
-
-    for(var i = 0; i < players.length; i++)
+        for(var i = 0; i < players.length; i++)
     {
         if(betPly == players[i].id)
         {
@@ -77,38 +123,13 @@ for(var i = 0; i < betPlayers.length; i++)
 nodeTBody.innerHTML = s;
 }
 
+/*visszaállítja a players (és a csapatBeosztas) tömb értékét az eredeti állapotra, ha több bajnokságot is le akarnánk futtatni egymás után.
+Sajnos most csak eddig jutottam, ez a függvény még nem működik rendesen. Este folytatom, eljutsz ameddig eljutsz.
+*/
+function resetPlayers() {
 
-function getBetPlayer (player)
-{
-    betPlayers.push(player);
-    return betPlayers;
-}
+    console.log("players:", players);
+    console.log("csapatBeosztas:", csapatBeosztas);
+    console.log("playersBackup:", playersBackup);
 
-//A players tömbből random játékost ad vissza
-function getRandomPlayerToBeAssigned (players) {
-    return players[Math.floor(Math.random()*players.length)];
-}
-
-//Beosztja a players tömbből a játékosokat a csapatBeosztas tömbbe, miközben kiüríti a players tömböt. 
-function assignIntoTeams () {
-    var currentPlayer;
-    var currentTeam;
-    var index;
-
-    while (players.length != 0) {
-        console.log("players.length: ", players.length);
-        currentTeam = [];
-        for (var i = 0; i < 2; i++) {
-            currentTeam["teamName"] = "csapat" + (csapatBeosztas.length+1);
-            currentPlayer = getRandomPlayerToBeAssigned(players);
-            index = players.indexOf(currentPlayer);
-            currentTeam.push(currentPlayer)
-            players.splice(index,1);
-        }
-
-        csapatBeosztas.push(currentTeam);
-
-        console.log("a players array: ", players);
-        console.log("a csapatbeosztás: ", csapatBeosztas);
-    }
 }
