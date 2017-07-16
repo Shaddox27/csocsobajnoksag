@@ -12,12 +12,8 @@ function calculateRoundStageScores()
  	var currentTeam2;
  	for (var i = 0; i < csapatBeosztas.length-1; i++) {
 
- 		currentTeam1 = csapatBeosztas [i];
-	 	console.log("currentTeam1", currentTeam1);
-
  		for (var j = i+1; j < csapatBeosztas.length; j++){
- 			currentTeam2 = csapatBeosztas[j];
- 			console.log("currentTeam2", currentTeam2);
+ 			
  			var results = calculateMatchResult();
  			if (results == 0) {
  				csapatBeosztas[i].score += 3;
@@ -30,6 +26,9 @@ function calculateRoundStageScores()
 
  		}
  	}
+ 	csapatBeosztas.sort(function(a, b) {
+ 		return parseInt(b.score) - parseInt(a.score);
+ 	});
 }
 
 

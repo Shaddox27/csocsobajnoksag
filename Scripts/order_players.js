@@ -21,8 +21,6 @@ var players = [
 {nev: 'Koncz Gergely', occ: 0, id: 19}
 ];
 
-// Mi a fene az az "occ"??? Ebből a névből semmi nem derül ki :D
-
 var betPlayers = [];
 var betPly;
 var csapatBeosztas = [];
