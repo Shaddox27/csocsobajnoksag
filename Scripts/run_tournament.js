@@ -8,7 +8,28 @@ function runTournamentEventHandler()
 //A csapatBeosztas tömbben lévő score-t módosítja a véletlenszerű meccsek lefutása során.
 function calculateRoundStageScores()
 {
- 	
+ 	var currentTeam1;
+ 	var currentTeam2;
+ 	for (var i = 0; i < csapatBeosztas.length-1; i++) {
+
+ 		currentTeam1 = csapatBeosztas [i];
+	 	console.log("currentTeam1", currentTeam1);
+
+ 		for (var j = i+1; j < csapatBeosztas.length; j++){
+ 			currentTeam2 = csapatBeosztas[j];
+ 			console.log("currentTeam2", currentTeam2);
+ 			var results = calculateMatchResult();
+ 			if (results == 0) {
+ 				csapatBeosztas[i].score += 3;
+ 			} else if (results == 1) {
+ 				csapatBeosztas[i].score += 1;
+ 				csapatBeosztas[j].score += 1;
+ 			} else {
+ 				csapatBeosztas[j].score += 3;
+ 			}
+
+ 		}
+ 	}
 }
 
 
@@ -41,11 +62,11 @@ function calculateMatchResult () {
 	var resultKey;
 	var randomNumber = Math.random();
 	if (randomNumber<0.37) {
-		resultKey = 0
-	} else if (0.37 <= randomNumber < 0.63) {
-		resultKey = 1
+		resultKey = 0;
+	} else if (0.37 <= randomNumber && randomNumber < 0.63) {
+		resultKey = 1;
 	} else {
-		resultKey = 2
+		resultKey = 2;
 	}
 	return resultKey;
 }

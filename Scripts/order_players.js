@@ -33,7 +33,6 @@ function getBetPlayerEventHandler()
     resetPage();
     assignIntoTeams();
     displayTeams();
-    console.log(csapatBeosztas);
 }
 
 
@@ -146,5 +145,4 @@ function resetPlayers() {
         {nev: 'Koncz Gergely', occ: 0, id: 19}
         ];
         csapatBeosztas = [];
-    console.log("players:", players);
 }
