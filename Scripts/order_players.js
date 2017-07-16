@@ -33,19 +33,8 @@ function getBetPlayerEventHandler()
 {
     var x = document.getElementById("lstPlayers").selectedIndex;
     betPly = parseInt(document.getElementsByTagName("option")[x].value);
-    var currentPlayer;
-    var index;
 
-    while (players.length != 0) {
-        console.log(players.length);
-        currentPlayer = getRandomPlayerToBeAssigned(players);
-        index = players.indexOf(currentPlayer);
-
-        csapatBeosztas.push(currentPlayer);
-        players.splice(index,1);
-        console.log("a players array: ", players);
-        console.log("a csapatbeosztás: ", csapatBeosztas);
-    }
+    assignIntoTeams();
 
     for(var i = 0; i < players.length; i++)
     {
@@ -95,6 +84,31 @@ function getBetPlayer (player)
     return betPlayers;
 }
 
+//A players tömbből random játékost ad vissza
 function getRandomPlayerToBeAssigned (players) {
     return players[Math.floor(Math.random()*players.length)];
+}
+
+//Beosztja a players tömbből a játékosokat a csapatBeosztas tömbbe, miközben kiüríti a players tömböt. 
+function assignIntoTeams () {
+    var currentPlayer;
+    var currentTeam;
+    var index;
+
+    while (players.length != 0) {
+        console.log("players.length: ", players.length);
+        currentTeam = [];
+        for (var i = 0; i < 2; i++) {
+            currentTeam["teamName"] = "csapat" + (csapatBeosztas.length+1);
+            currentPlayer = getRandomPlayerToBeAssigned(players);
+            index = players.indexOf(currentPlayer);
+            currentTeam.push(currentPlayer)
+            players.splice(index,1);
+        }
+
+        csapatBeosztas.push(currentTeam);
+
+        console.log("a players array: ", players);
+        console.log("a csapatbeosztás: ", csapatBeosztas);
+    }
 }
