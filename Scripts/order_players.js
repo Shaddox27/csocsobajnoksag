@@ -56,10 +56,9 @@ function assignIntoTeams () {
     var index;
 
     while (players.length != 0) {
-        console.log("players.length: ", players.length);
         currentTeam = [];
         for (var i = 0; i < 2; i++) {
-            currentTeam["teamName"] = "csapat" + (csapatBeosztas.length+1);
+            currentTeam["teamName"] = "Csapat " + (csapatBeosztas.length+1);
             currentPlayer = getRandomPlayerToBeAssigned(players);
             index = players.indexOf(currentPlayer);
             currentTeam.push(currentPlayer)
@@ -67,59 +66,45 @@ function assignIntoTeams () {
         }
 
         csapatBeosztas.push(currentTeam);
-
-        console.log("a players array: ", players);
-        console.log("a csapatbeosztás: ", csapatBeosztas);
     }
 }
 
 //Kiírja a HTML-ben levő táblázatba a csapatBeosztas tömbben levő csapatneveket és a csapattagokat.
 function displayTeams() {
 
-    //TODO Légyszi ezt csináld meg Andris
-
-    var x = document.getElementById("lstPlayers").selectedIndex;
-    betPly = parseInt(document.getElementsByTagName("option")[x].value);
-
-        for(var i = 0; i < players.length; i++)
-    {
-        if(betPly == players[i].id)
-        {
-            getBetPlayer(players[i]);
-        }   
-    }
 
     var nodeTBody = document.querySelector("table > tbody");
 
-//végig megy mindig az összesen
-var nodeTHead = document.querySelector("table > thead");
+    //végig megy mindig az összesen
+    var nodeTHead = document.querySelector("table > thead");
 
-var s = '';
+    var s = '';
 
-    s += "<tr>"
+     s += "<tr>"
     for(var k in csapatBeosztas[0]){
-    
-    s += "<th>" + k.charAt(0).toLocaleUpperCase() + k.slice(1) +"</th>"
+
+        s += "<th>" + k.charAt(0).toLocaleUpperCase() + k.slice(1) +"</th>"
   
     }
-    s += "</tr>"
+        s += "</tr>"
 
-nodeTHead.innerHTML = s;
-s ="";
+    nodeTHead.innerHTML = s;
+    s ="";
 
-// Nem tudom még hogyan kell megoldani ezt a problémát. A teamName miatt beakad és undefinde-ot ír, mert az így máshol van mint a nevek. viszont aludnom kell mert 2 órát aludtam, a neveket kiírja az a lényeg :D
-for(var i = 0; i < csapatBeosztas.length; i++)
-{
-    s += "<tr>";
-    for(var k in csapatBeosztas[i]){
-    
-    s += "<td>" + csapatBeosztas[i][k].nev + "</td>";
-  
+    for(var i = 0; i < csapatBeosztas.length; i++)
+    {
+        s += "<tr>";
+        for(var j = 0; j<2; j++){
+
+            s += "<td>" + csapatBeosztas[i][j].nev + "</td>";
+
+        }
+
+        s += "<td>" + csapatBeosztas[i].teamName + "</td>";
+        s += "</tr>";
+
     }
-    s += "</tr>";
-
-}
-nodeTBody.innerHTML = s;
+    nodeTBody.innerHTML = s;
 }
 
 /*visszaállítja a players (és a csapatBeosztas) tömb értékét az eredeti állapotra, ha több bajnokságot is le akarnánk futtatni egymás után.
