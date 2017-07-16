@@ -25,13 +25,12 @@ var players = [
 
 var betPlayers = [];
 var betPly;
-var sorSzam = 1;
 var csapatBeosztas = [];
 
 //a játékosokat beosztja csapatokba a "Mehet" lenyomására, valamint megjeleníti a csapatokat táblázatokban.
 function getBetPlayerEventHandler()
 {
-    resetPlayers();
+    //resetPlayers();
     assignIntoTeams();
     displayTeams();
 
@@ -98,7 +97,7 @@ var nodeTHead = document.querySelector("table > thead");
 var s = '';
 
     s += "<tr>"
-    for(var k in betPlayers[0]){
+    for(var k in csapatBeosztas[0]){
     
     s += "<th>" + k.charAt(0).toLocaleUpperCase() + k.slice(1) +"</th>"
   
@@ -108,17 +107,17 @@ var s = '';
 nodeTHead.innerHTML = s;
 s ="";
 
-for(var i = 0; i < betPlayers.length; i++)
+// Nem tudom még hogyan kell megoldani ezt a problémát. A teamName miatt beakad és undefinde-ot ír, mert az így máshol van mint a nevek. viszont aludnom kell mert 2 órát aludtam, a neveket kiírja az a lényeg :D
+for(var i = 0; i < csapatBeosztas.length; i++)
 {
     s += "<tr>";
-    for(var k in betPlayers[i]){
+    for(var k in csapatBeosztas[i]){
     
-    s += "<td>" + betPlayers[i][k] +"</td>";
+    s += "<td>" + csapatBeosztas[i][k].nev + "</td>";
   
     }
     s += "</tr>";
 
-    sorSzam++
 }
 nodeTBody.innerHTML = s;
 }
