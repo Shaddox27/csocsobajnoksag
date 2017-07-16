@@ -30,10 +30,9 @@ var csapatBeosztas = [];
 //a játékosokat beosztja csapatokba a "Mehet" lenyomására, valamint megjeleníti a csapatokat táblázatokban.
 function getBetPlayerEventHandler()
 {
-    //resetPlayers();
+    resetPage();
     assignIntoTeams();
     displayTeams();
-
 }
 
 
@@ -110,10 +109,42 @@ function displayTeams() {
 /*visszaállítja a players (és a csapatBeosztas) tömb értékét az eredeti állapotra, ha több bajnokságot is le akarnánk futtatni egymás után.
 Sajnos most csak eddig jutottam, ez a függvény még nem működik rendesen. Este folytatom, eljutsz ameddig eljutsz.
 */
+function resetPage() {
+    resetPlayers();
+    
+    var nodeTBody = document.querySelector("table > tbody");
+
+    //végig megy mindig az összesen
+    var nodeTHead = document.querySelector("table > thead");
+    nodeTHead.innerHTML = "<tr></tr>";
+    nodeTBody.innerHTML = "";
+    console.log("resetPage hívva");
+}
+
+//Visszaállítja a players tömböt az eredeti értékére.
 function resetPlayers() {
-
+    players = [
+        {nev: 'Barbay Ádám', occ: 0, id: 0},
+        {nev: 'Bodóczky Mihály', occ: 0, id: 1},
+        {nev: 'Czető Márton', occ: 0, id: 2},
+        {nev: 'Decsics Gergely', occ: 0, id: 3},
+        {nev: 'Diera Andor', occ: 0, id: 4},
+        {nev: 'Hadiné Gubics Andrea', occ: 0, id: 5},
+        {nev: 'Hallak Hella', occ: 0, id: 6},
+        {nev: 'Molnár László', occ: 0, id: 7},
+        {nev: 'Németh Zoltán', occ: 0, id: 8},
+        {nev: 'Rátkay András', occ: 0, id: 9},
+        {nev: 'Sándor Zoltán Péter', occ: 0, id: 10},
+        {nev: 'Soltesz Alexander', occ: 0, id: 11},
+        {nev: 'Szabó Erik Márk', occ: 0, id: 12},
+        {nev: 'Szabó Péter', occ: 0, id: 13},
+        {nev: 'Szilberhorn Zoltán', occ: 0, id: 14},
+        {nev: 'Taigiszer Dóra', occ: 0, id: 15},
+        {nev: 'Timpfel Gábor', occ: 0, id: 16},
+        {nev: 'Tóth Sára', occ: 0, id: 17},
+        {nev: 'Mező Imre', occ: 0, id: 18},
+        {nev: 'Koncz Gergely', occ: 0, id: 19}
+        ];
+        csapatBeosztas = [];
     console.log("players:", players);
-    console.log("csapatBeosztas:", csapatBeosztas);
-    console.log("playersBackup:", playersBackup);
-
 }
