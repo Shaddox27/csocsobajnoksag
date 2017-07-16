@@ -26,12 +26,26 @@ var players = [
 var betPlayers = [];
 var betPly;
 var sorSzam = 1;
+var csapatBeosztas = [];
 
-
+//a játékosokat beosztja csapatokba a "Mehet" lenyomására
 function getBetPlayerEventHandler()
 {
     var x = document.getElementById("lstPlayers").selectedIndex;
     betPly = parseInt(document.getElementsByTagName("option")[x].value);
+    var currentPlayer;
+    var index;
+
+    while (players.length != 0) {
+        console.log(players.length);
+        currentPlayer = getRandomPlayerToBeAssigned(players);
+        index = players.indexOf(currentPlayer);
+
+        csapatBeosztas.push(currentPlayer);
+        players.splice(index,1);
+        console.log("a players array: ", players);
+        console.log("a csapatbeosztás: ", csapatBeosztas);
+    }
 
     for(var i = 0; i < players.length; i++)
     {
@@ -79,4 +93,8 @@ function getBetPlayer (player)
 {
     betPlayers.push(player);
     return betPlayers;
+}
+
+function getRandomPlayerToBeAssigned (players) {
+    return players[Math.floor(Math.random()*players.length)];
 }
