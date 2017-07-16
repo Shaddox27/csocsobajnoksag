@@ -33,6 +33,7 @@ function getBetPlayerEventHandler()
     resetPage();
     assignIntoTeams();
     displayTeams();
+    console.log(csapatBeosztas);
 }
 
 
@@ -58,6 +59,7 @@ function assignIntoTeams () {
         currentTeam = [];
         for (var i = 0; i < 2; i++) {
             currentTeam["teamName"] = "Csapat " + (csapatBeosztas.length+1);
+            currentTeam["score"] = 0;
             currentPlayer = getRandomPlayerToBeAssigned(players);
             index = players.indexOf(currentPlayer);
             currentTeam.push(currentPlayer)
@@ -85,6 +87,7 @@ function displayTeams() {
         s += "<th>" + k.charAt(0).toLocaleUpperCase() + k.slice(1) +"</th>"
   
     }
+        s = s.slice(0,41)
         s += "</tr>"
 
     nodeTHead.innerHTML = s;
@@ -118,7 +121,7 @@ function resetPage() {
     var nodeTHead = document.querySelector("table > thead");
     nodeTHead.innerHTML = "<tr></tr>";
     nodeTBody.innerHTML = "";
-    console.log("resetPage hívva");
+    
 }
 
 //Visszaállítja a players tömböt az eredeti értékére.
