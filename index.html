@@ -6,26 +6,26 @@
         <link rel="stylesheet" href="Styles/style.css">
     </head>
     <body>
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Szabályok</button>
+        <!-- Trigger/Open The Modal -->
+         <button id="myBtn">Szabályok</button>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
 
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2>Csocsóbajnokság házi szabályok</h2>
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close">&times;</span>
+              <h2>Csocsóbajnokság házi szabályok</h2>
+            </div>
+            <div class="modal-body">
+              <p>A házi bajnokság két részből áll: körmérkőzésekből, majd egy egyenes kieséses szakaszból. Minden győzelem után a csapatok <b>3</b> pontot kapnak, a vesztesek <b>0</b> pontot. Döntetlen esetén mindkét csapat <b>1-1</b> pontot kap. A körmérkőzésekben a legjobb 4 jut tovább az elődöntőbe. Az elődöntő után <b>a</b> döntő következik, így kerül kiválasztásra a legjobb csapat.</p>
+              <p>A <i>Sorsolás</i> gombbal véletlenszerűen kisorsolásra kerülnek a csapatok, majd a <i>Játék!</i> gombra kattintva lejátszásra kerülnek a meccsek, majd kialakult rangsor megjelenik a pontszámokkal együtt.</p>
+              <p>Győzzön a legjobb csapat!</p>
+            </div>
+          </div>
+
         </div>
-        <div class="modal-body">
-          <p>A házi bajnokság két részből áll: körmérkőzésekből, majd egy egyenes kieséses szakaszból. Minden győzelem után a csapatok <b>3</b> pontot kapnak, a vesztesek <b>0</b> pontot. Döntetlen esetén mindkét csapat <b>1-1</b> pontot kap. A körmérkőzésekben a legjobb 4 jut tovább az elődöntőbe. Az elődöntő után <b>a</b> döntő következik, így kerül kiválasztásra a legjobb csapat.</p>
-          <p>A <i>Sorsolás</i> gombbal véletlenszerűen kisorsolásra kerülnek a csapatok, majd a <i>Játék!</i> gombra kattintva lejátszásra kerülnek a meccsek, majd kialakult rangsor megjelenik a pontszámokkal együtt.</p>
-          <p>Győzzön a legjobb csapat!</p>
-        </div>
-      </div>
-
-    </div>
         <table border="2" id="teamsTable">
             <thead></thead>
             <tbody></tbody>
@@ -35,6 +35,9 @@
             <thead id="scoresHead"></thead>
             <tbody id="scoresBody"></tbody>
         </table>
+        <h2 class="hidden" id="knockout1">Elődöntő:</h2>
+        <h2 class="hidden" id="knockout2">Döntő:</h2>
+        <h2 class="hidden" id="knockout3">A győztes csapat:</h2>
         <button type="button" onclick="runTournamentEventHandler();">Játék!</button>
         <script type="text/javascript" src="Scripts/order_players.js"></script>
         <script type="text/javascript" src="Scripts/run_tournament.js"></script>

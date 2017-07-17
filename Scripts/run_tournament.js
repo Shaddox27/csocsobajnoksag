@@ -1,15 +1,21 @@
+var advancedForKnockoutStage = [];
+
 //A lejátszás gombra kattintva kiszámolja az eredményeket, és HTML-ben megjeleníti azokat.
 function runTournamentEventHandler()
 {
  	calculateRoundStageScores();
+ 	//calculateKnockoutStageScores();
  	displayresults();
+ 	document.getElementById("knockout1").style.display = "block";
+ 	document.getElementById("knockout2").style.display = "block";
+ 	document.getElementById("knockout3").style.display = "block";
+
+ 	getTopFourTeams();
 }
 
 //A csapatBeosztas tömbben lévő score-t módosítja a véletlenszerű meccsek lefutása során.
 function calculateRoundStageScores()
 {
- 	var currentTeam1;
- 	var currentTeam2;
  	for (var i = 0; i < csapatBeosztas.length-1; i++) {
 
  		for (var j = i+1; j < csapatBeosztas.length; j++){
@@ -31,6 +37,30 @@ function calculateRoundStageScores()
  	});
 }
 
+//A csapatBeosztas tömbben lévő score-t módosítja a véletlenszerű meccsek lefutása során.
+function calculateRoundStageScores()
+{
+ 	for (var i = 0; i < csapatBeosztas.length-1; i++) {
+
+ 		for (var j = i+1; j < csapatBeosztas.length; j++){
+ 			
+ 			var results = calculateMatchResult();
+ 			if (results == 0) {
+ 				csapatBeosztas[i].score += 3;
+ 			} else if (results == 1) {
+ 				csapatBeosztas[i].score += 1;
+ 				csapatBeosztas[j].score += 1;
+ 			} else {
+ 				csapatBeosztas[j].score += 3;
+ 			}
+
+ 		}
+ 	}
+ 	csapatBeosztas.sort(function(a, b) {
+ 		return parseInt(b.score) - parseInt(a.score);
+ 	});
+ 	
+}
 
 function displayresults()
 {
@@ -70,3 +100,15 @@ function calculateMatchResult () {
 	return resultKey;
 }
 
+function getTopFourTeams() {
+	for (var i = 0; i < 4; i++) {
+		advancedForKnockoutStage.push(csapatBeosztas[i]);
+	}
+}
+
+
+
+
+
+
+console.log(csapatBeosztas);
